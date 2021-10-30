@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<center>
+<div style="text-align:center;">
+<font size="5">
+<!-- jpgファイル(5MB以下)を選択して送信してください -->
+<!-- ↑heroku用 -->
+静止画・動画ファイルを選択して送信してください 
+<!-- googlecolabo用 -->
+</font>
+<hr>
+
+<form action = "./" method = "POST" enctype = "multipart/form-data">
+    <input type="file" name="image" accept="image/*,video/*">
+    <!-- <input type="file" name="image" accept=".jpg,.jpeg"> -->
+    <input type = "submit" value="送信">
+</form>
+<form action="" method="POST"></form>
+</div>
+</center>
+
+{% if err_message_1 %}
+<hr>
+<center><font size="6" color=red><b>{{ err_message_1 }}</b></font></center>
+<hr>
+{% endif %}
+
+{% if err_message_2 %}
+<hr>
+<center><font size="6" color=red><b>{{ err_message_2 }}</b></font></center>
+<hr>
+{% endif %}
+
+
+{% if filepath_pltly %}
+<center>
+<hr>
+<font size="3">{{ image }}</font>
+<hr>
+<font size="6">物体検出<br></font>
+    <iframe src="{{ filepath_pltly }}" name="sample" width="600" height="450">
+        この部分はインラインフレームを使用しています。
+    </iframe>
+</center>
+{% endif %}
+
+{% if filepath %}
+<center>
+<figure>
+    <!-- <legend>test</legend> -->
+    <img src="{{ filepath }}"  alt="検出結果">
+</figure>
+</center>
+{% endif %}
+
+
+
+<!-- {% if filepath_1 %}
+<center>
+<hr>
+<font size="3">{{ csv }}</font>
+<hr>
+<font size="6">sns pairplot<br></font>
+<img src="{{ filepath_1 }}" style="margin-top: 10px; vertical-align: bottom; width: 700px"><br>
+<hr>
+</center>
+{% endif %}
+
+{% if filepath_2 %}
+<center>
+<hr>
+<font size="3">{{ csv }}</font>
+<hr>
+<font size="6">sns lmplot<br></font>
+<img src="{{ filepath_2 }}" style="margin-top: 10px; vertical-align: bottom; width: 700px"><br>
+<hr>
+</center>
+{% endif %} -->
+
+{% endblock %}
